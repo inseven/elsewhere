@@ -5,6 +5,7 @@ import json
 import os
 import pick
 import subprocess
+import tempfile
 
 
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
@@ -21,9 +22,6 @@ identifier = OPTIONS[result[0]]
 environment = jinja2.Environment(loader=jinja2.FileSystemLoader(ROOT_DIRECTORY))
 template = environment.get_template('template.html')
 
-index = 'index.html'
-with open(index, 'w') as fh:
-    fh.write(template.render(video=identifier))
 
 # Remove any indication that Chrome crashed to avoid a restore prompt.
 preferences_path = os.path.expanduser(CHROMIUM_PREFERENCES)
@@ -33,5 +31,8 @@ with open(preferences_path, 'r') as fh:
 del preferences["profile"]["exit_type"]
 with open(preferences_path, 'w') as fh:
     json.dump(preferences, fh)
-    
-subprocess.check_call(["chromium-browser", "--kiosk", index])
+
+with tempfile.NamedTemporaryFile(suffix=".html") as index:
+    with open(index.name, 'w') as fh:
+        fh.write(template.render(video=identifier))
+    subprocess.check_call(["chromium-browser", "--kiosk", index.name])
