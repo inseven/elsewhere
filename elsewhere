@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 
 import jinja2
+import json
 import os
 import pick
 import subprocess
 
 
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
+CHROMIUM_PREFERENCES = "~/.config/chromium/Default/Preferences"
 
 OPTIONS = {
     "Kabukicho": "GNyW9j9MsQI",
@@ -23,4 +25,13 @@ index = 'index.html'
 with open(index, 'w') as fh:
     fh.write(template.render(video=identifier))
 
+# Remove any indication that Chrome crashed to avoid a restore prompt.
+preferences_path = os.path.expanduser(CHROMIUM_PREFERENCES)
+preferences = None
+with open(preferences_path, 'r') as fh:
+    preferences = json.load(fh)
+del preferences["profile"]["exit_type"]
+with open(preferences_path, 'w') as fh:
+    json.dump(preferences, fh)
+    
 subprocess.check_call(["chromium-browser", "--kiosk", index])
