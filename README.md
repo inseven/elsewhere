@@ -17,3 +17,13 @@ If you're running over an SSH session, it may be necessary to set the `DISPLAY` 
 ```bash
 DISPLAY=:0.0 chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
 ```
+
+Configure this to run on boot, by adding the following to `~/.config/autostart/youtube.desktop`:
+
+```ini
+[Desktop Entry]
+
+Type=Application
+Name=YouTube
+Exec=chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
+```
