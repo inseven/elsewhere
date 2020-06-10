@@ -11,3 +11,9 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 ```bash
 chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
 ```
+
+If you're running over an SSH session, it may be necessary to set the `DISPLAY` environment variable:
+
+```bash
+DISPLAY=:0.0 chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
+```
