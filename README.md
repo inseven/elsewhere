@@ -9,5 +9,5 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 ## Notes
 
 ```bash
-chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1" --start-fullscreen
+chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
 ```
