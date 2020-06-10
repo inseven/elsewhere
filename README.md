@@ -28,4 +28,4 @@ Name=YouTube
 Exec=chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
 ```
 
-_The documentation on [Sparkfun](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) was useful when setting this up._
+_The documentation on [SparkFun](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) was useful when working out the best way to run applications on startup._
