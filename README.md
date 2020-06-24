@@ -29,7 +29,3 @@ Exec=livestreamer --player "vlc --fullscreen" "https://www.youtube.com/watch?v=n
 ```
 
 _The documentation on [SparkFun](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) was useful when working out the best way to run applications on startup._
-
-```
-
-```
