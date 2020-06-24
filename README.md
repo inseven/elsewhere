@@ -9,13 +9,13 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 ## Notes
 
 ```bash
-chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
+livestreamer --player "vlc --fullscreen" "https://www.youtube.com/watch?v=nQZ5gGKmwNk" best
 ```
 
 If you're running over an SSH session, it may be necessary to set the `DISPLAY` environment variable:
 
 ```bash
-DISPLAY=:0.0 chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
+DISPLAY=:0.0 livestreamer --player "vlc --fullscreen" "https://www.youtube.com/watch?v=nQZ5gGKmwNk" best
 ```
 
 Configure this to run on boot, by adding the following to `~/.config/autostart/youtube.desktop`:
@@ -25,11 +25,11 @@ Configure this to run on boot, by adding the following to `~/.config/autostart/y
 
 Type=Application
 Name=YouTube
-Exec=chromium-browser --app="https://www.youtube.com/embed/hmtqztrfvE4?start=0&autoplay=1&mute=1" --start-fullscreen
+Exec=livestreamer --player "vlc --fullscreen" "https://www.youtube.com/watch?v=nQZ5gGKmwNk" best
 ```
 
 _The documentation on [SparkFun](https://learn.sparkfun.com/tutorials/how-to-run-a-raspberry-pi-program-on-startup/all) was useful when working out the best way to run applications on startup._
 
 ```
-livestreamer --player "vlc --fullscreen" "https://www.youtube.com/watch?v=nQZ5gGKmwNk" best
+
 ```
