@@ -15,5 +15,5 @@ Configure to run on boot, by adding the following to `~/.config/autostart/elsewh
 
 Type=Application
 Name=Elsewhere
-Exec=/home/pi/Projects/elsewhere/elsewhere.p
+Exec=/home/pi/Projects/elsewhere/elsewhere.py
 ```
