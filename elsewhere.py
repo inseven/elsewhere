@@ -15,9 +15,12 @@ import RPi.GPIO as GPIO
 
 GPIO_PIN = 17
 
-URLS = ["https://www.youtube.com/watch?v=nQZ5gGKmwNk",
-        "https://www.youtube.com/watch?v=IcWTPFnqOLo",
-        "https://www.youtube.com/watch?v=F109TZt3nRc"]
+URLS = [
+#    "https://www.ustream.tv/embed/9408562?html5ui",
+    "https://www.youtube.com/watch?v=nQZ5gGKmwNk",
+    "https://www.youtube.com/watch?v=IcWTPFnqOLo",
+    "https://www.youtube.com/watch?v=F109TZt3nRc"
+]
 
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
@@ -30,6 +33,13 @@ def livestreamer(url):
     }
     return subprocess.Popen(["livestreamer", "--player", "vlc --fullscreen", url, "best"], env=env)
 
+
+class Streamer(threading.Thread):
+
+    def run(self):
+        while True:
+            livestreamer(URLS[0]).wait()
+            
 
 class Player(object):
 
@@ -90,6 +100,9 @@ def setup_buttons(commands):
 
 
 def main():
+    thread = Streamer()
+    thread.start()
+    
     player = Player(urls=URLS)
     buttons = setup_buttons({
         17: shutdown,
@@ -97,7 +110,7 @@ def main():
         23: next_video(player),
         27: previous_video(player),
     })
-    player.play()
+    # player.play()
     signal.pause()
 
 
