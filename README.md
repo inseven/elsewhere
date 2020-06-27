@@ -8,12 +8,8 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 
 ## Installation
 
-Configure to run on boot, by adding the following to `~/.config/autostart/elsewhere.desktop`:
-
-```ini
-[Desktop Entry]
-
-Type=Application
-Name=Elsewhere
-Exec=/home/pi/Projects/elsewhere/elsewhere.py
+```bash
+git clone git@github.com:jbmorley/elsewhere.git
+cd elsewhere
+python3 setup.py
 ```
