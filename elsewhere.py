@@ -108,7 +108,7 @@ def shutdown():
 
 def reboot():
     subprocess.check_call(["sync"])
-    subprocess.check_call(["/sbin/reboot"])
+    subprocess.check_call(["sudo", "/sbin/reboot"])
 
 
 def setup_buttons(commands):
