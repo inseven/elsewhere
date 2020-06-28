@@ -37,3 +37,5 @@ display_rotate=0
 framebuffer_width=2048
 framebuffer_height=1536
 ```
+
+See https://github.com/area515/Photonic3D/issues/286 for more details.
