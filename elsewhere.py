@@ -16,7 +16,7 @@ import RPi.GPIO as GPIO
 GPIO_PIN = 17
 
 URLS = [
-#    "https://www.ustream.tv/embed/9408562?html5ui",
+    "https://www.ustream.tv/embed/9408562?html5ui",
     "https://www.youtube.com/watch?v=nQZ5gGKmwNk",
     "https://www.youtube.com/watch?v=IcWTPFnqOLo",
     "https://www.youtube.com/watch?v=F109TZt3nRc"
@@ -36,24 +36,45 @@ def livestreamer(url):
 
 class Streamer(threading.Thread):
 
+    def __init__(self, url, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.url = url
+        self.lock = threading.Lock()
+        self._should_stop = False
+        self.process = None
+
     def run(self):
         while True:
-            livestreamer(URLS[0]).wait()
-            
+            process = None
+            with self.lock:
+                if self._should_stop:
+                    return
+                else:
+                    process = livestreamer(self.url)
+                    self.process = process
+            process.wait()
+
+    def stop(self):
+        with self.lock:
+            self._should_stop = True
+            self.process.terminate()
+        self.join()
+
 
 class Player(object):
 
     def __init__(self, urls):
-        self.process = None
+        self.streamer = None
         self.urls = urls
         self.index = 0
 
     def play(self):
-        if self.process is not None:
-            self.process.terminate()
+        if self.streamer is not None:
+            self.streamer.stop()
         url = self.url
         logging.info(f"Playing {url}...")
-        self.process = livestreamer(url)
+        self.streamer = Streamer(url=url)
+        self.streamer.start()
 
     def next(self):
         self.index = (self.index + 1) % len(self.urls)
@@ -99,10 +120,7 @@ def setup_buttons(commands):
     return buttons
 
 
-def main():
-    thread = Streamer()
-    thread.start()
-    
+def main():    
     player = Player(urls=URLS)
     buttons = setup_buttons({
         17: shutdown,
@@ -110,7 +128,7 @@ def main():
         23: next_video(player),
         27: previous_video(player),
     })
-    # player.play()
+    player.play()
     signal.pause()
 
 
