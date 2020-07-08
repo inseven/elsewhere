@@ -17,7 +17,7 @@ GPIO_PIN = 17
 
 URLS = [
     "https://www.ustream.tv/embed/9408562?html5ui",
-    "https://www.youtube.com/watch?v=nQZ5gGKmwNk",
+    "https://m.youtube.com/watch?v=uTj73Iikl_w",
     "https://www.youtube.com/watch?v=IcWTPFnqOLo",
     "https://www.youtube.com/watch?v=F109TZt3nRc"
 ]
