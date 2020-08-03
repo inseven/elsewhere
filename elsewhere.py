@@ -4,6 +4,7 @@ import argparse
 import atexit
 import logging
 import os
+import re
 import signal
 import subprocess
 import sys
@@ -115,7 +116,8 @@ def main():
     parser.add_argument("streams", help="URL containing new-line separated livestream URLs")
     options = parser.parse_args()
     response = requests.get(options.streams)
-    urls = [line.strip() for line in response.text.split("\n") if line.strip()]
+    lines = [re.sub(r"(#.+)", "", line.strip()) for line in response.text.split("\n")]
+    urls = [line for line in lines if line]
     player = Player(urls=urls)
     buttons = setup_buttons({
         21: shutdown,
