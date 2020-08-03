@@ -21,7 +21,7 @@ DESKTOP_ENTRY_TEMPLATE = """
 
 Type=Application
 Name=Elsewhere
-Exec=%s %s >> %s 2>&1
+Exec=/bin/bash -c "%s %s >> %s 2>&1"
 """
 
 
