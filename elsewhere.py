@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import argparse
 import atexit
 import logging
 import os
@@ -9,18 +10,7 @@ import sys
 import threading
 
 import gpiozero
-
-import RPi.GPIO as GPIO
-
-
-GPIO_PIN = 17
-
-URLS = [
-    "https://www.ustream.tv/embed/9408562?html5ui",
-    "https://m.youtube.com/watch?v=uTj73Iikl_w",
-    "https://www.youtube.com/watch?v=IcWTPFnqOLo",
-    "https://www.youtube.com/watch?v=F109TZt3nRc"
-]
+import requests
 
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
@@ -120,13 +110,18 @@ def setup_buttons(commands):
     return buttons
 
 
-def main():    
-    player = Player(urls=URLS)
+def main():
+    parser = argparse.ArgumentParser(description="Livestream picture frame software.")
+    parser.add_argument("streams", help="URL containing new-line separated livestream URLs")
+    options = parser.parse_args()
+    response = requests.get(options.streams)
+    urls = [line.strip() for line in response.text.split("\n") if line.strip()]
+    player = Player(urls=urls)
     buttons = setup_buttons({
-        17: shutdown,
+        21: shutdown,
         22: reboot,
-        23: next_video(player),
-        27: previous_video(player),
+        20: next_video(player),
+        16: previous_video(player),
     })
     player.play()
     signal.pause()
