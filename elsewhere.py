@@ -94,7 +94,7 @@ def previous_video(player):
 
 def shutdown():
     subprocess.check_call(["sync"])
-    subprocess.check_call(["/sbin/shutdown", "-h", "now"])
+    subprocess.check_call(["sudo", "/sbin/shutdown", "-h", "now"])
 
 
 def reboot():
@@ -115,8 +115,14 @@ def main():
     parser = argparse.ArgumentParser(description="Livestream picture frame software.")
     parser.add_argument("streams", help="URL containing new-line separated livestream URLs")
     options = parser.parse_args()
-    response = requests.get(options.streams)
-    lines = [re.sub(r"(#.+)", "", line.strip()) for line in response.text.split("\n")]
+    content = None
+    if os.path.exists(options.streams):
+        with open(options.streams, "r") as fh:
+            content = fh.read()
+    else:
+        response = requests.get(options.streams)
+        content = response.text
+    lines = [re.sub(r"(#.+)", "", line.strip()) for line in content.split("\n")]
     urls = [line for line in lines if line]
     player = Player(urls=urls)
     buttons = setup_buttons({
