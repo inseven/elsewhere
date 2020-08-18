@@ -42,7 +42,7 @@ def main():
 
     logging.info("Installing livestreamer...")
     subprocess.run(["sudo", "apt", "update"])
-    subprocess.run(["sudo", "apt", "install", "livestreamer"])
+    subprocess.run(["sudo", "apt", "install", "livestreamer", "python3-bs4"])
 
     makedirs(AUTOSTART_DIRECTORY)
     makedirs(LOGS_DIRECTORY)

@@ -9,7 +9,9 @@ import signal
 import subprocess
 import sys
 import threading
+import urllib.request
 
+import inkyphat
 import gpiozero
 import requests
 
@@ -64,6 +66,12 @@ class Player(object):
             self.streamer.stop()
         url = self.url
         logging.info(f"Playing {url}...")
+        title = self.title
+        logging.info("Setting title to '%s'...", title)
+        inkyphat.set_colour("black")
+        font = inkyphat.ImageFont.truetype(inkyphat.fonts.FredokaOne, 18)
+        inkyphat.text((2, 2), title, 1, font=font)
+        inkyphat.show()
         self.streamer = Streamer(url=url)
         self.streamer.start()
 
@@ -75,7 +83,14 @@ class Player(object):
 
     @property
     def url(self):
-        return self.urls[self.index]
+        return self.urls[self.index][0]
+
+    @property
+    def title(self):
+        details = self.urls[self.index]
+        if len(details) > 1:
+            return details[1]
+        return ""
 
 
 def next_video(player):
@@ -114,6 +129,7 @@ def setup_buttons(commands):
 def main():
     parser = argparse.ArgumentParser(description="Livestream picture frame software.")
     parser.add_argument("streams", help="URL containing new-line separated livestream URLs")
+    parser.add_argument("--no-gpio", action="store_true", default=False, help="disable GPIO for channel controls")
     options = parser.parse_args()
     content = None
     if os.path.exists(options.streams):
@@ -123,14 +139,18 @@ def main():
         response = requests.get(options.streams)
         content = response.text
     lines = [re.sub(r"(#.+)", "", line.strip()) for line in content.split("\n")]
-    urls = [line for line in lines if line]
+    urls = [line.split(" ", 1) for line in lines if line]
     player = Player(urls=urls)
-    buttons = setup_buttons({
-        21: shutdown,
-        22: reboot,
-        20: next_video(player),
-        16: previous_video(player),
-    })
+    if not options.no_gpio:
+        logging.info("Setting up GPIO buttons...")
+        buttons = setup_buttons({
+            21: shutdown,
+            22: reboot,
+            20: next_video(player),
+            16: previous_video(player),
+        })
+    else:
+        logging.info("Skipping GPIO button setup...")
     player.play()
     signal.pause()
 
