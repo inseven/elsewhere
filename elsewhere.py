@@ -15,7 +15,9 @@ import gpiozero
 import inkyphat
 import requests
 
-from flask import Flask, escape, request, jsonify
+from flask import Flask, escape, request, jsonify, send_from_directory
+
+ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
@@ -33,8 +35,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello():
-    name = request.args.get("name", "World")
-    return f'Hello, {escape(name)}!'
+    return send_from_directory(ROOT_DIRECTORY, 'index.html')
 
 
 class Server(threading.Thread):
@@ -120,10 +121,12 @@ class Player(object):
         self.play()
 
     def shutdown(self):
-        subprocess.run(["sudo", "shutdown", "-h", "now"])
+        subprocess.check_call(["sync"])
+        subprocess.check_call(["sudo", "/sbin/shutdown", "-h", "now"])
 
     def reboot(self):
-        subprocess.run(["sudo", "shutdown", "-r", "now"])
+        subprocess.check_call(["sync"])
+        subprocess.check_call(["sudo", "/sbin/reboot"])
 
     @property
     def url(self):
@@ -135,28 +138,6 @@ class Player(object):
         if len(details) > 1:
             return details[1]
         return ""
-
-
-def next_video(player):
-    def inner():
-        player.next()
-    return inner
-
-
-def previous_video(player):
-    def inner():
-        player.previous()
-    return inner
-
-
-def shutdown():
-    subprocess.check_call(["sync"])
-    subprocess.check_call(["sudo", "/sbin/shutdown", "-h", "now"])
-
-
-def reboot():
-    subprocess.check_call(["sync"])
-    subprocess.check_call(["sudo", "/sbin/reboot"])
 
 
 def setup_buttons(commands):
@@ -186,10 +167,10 @@ def main():
     if not options.no_gpio:
         logging.info("Setting up GPIO buttons...")
         buttons = setup_buttons({
-            21: shutdown,
-            22: reboot,
+            21: player.shutdown,
+            22: player.reboot,
             20: player.next,
-            16: previous_video(player),
+            16: player.previous,
         })
     else:
         logging.info("Skipping GPIO button setup...")
