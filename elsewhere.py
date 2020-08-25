@@ -11,9 +11,11 @@ import sys
 import threading
 import urllib.request
 
-import inkyphat
 import gpiozero
+import inkyphat
 import requests
+
+from flask import Flask, escape, request, jsonify
 
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
@@ -25,6 +27,40 @@ def livestreamer(url):
         "DISPLAY": ":0.0",
     }
     return subprocess.Popen(["livestreamer", "--player", "vlc --fullscreen", url, "best"], env=env)
+
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello():
+    name = request.args.get("name", "World")
+    return f'Hello, {escape(name)}!'
+
+
+class Server(threading.Thread):
+
+    def __init__(self, player, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.player = player
+        def next():
+            self.player.next()
+            return jsonify({'url': self.player.url})
+        def previous():
+            self.player.previous()
+            return jsonify({'url': self.player.url})
+        def shutdown():
+            self.player.shutdown()
+            return jsonify({})
+        def reboot():
+            self.player.reboot()
+            return jsonify({})
+        app.add_url_rule('/api/v1/next', 'next', next)
+        app.add_url_rule('/api/v1/previous', 'previous', previous)
+        app.add_url_rule('/api/v1/shutdown', 'shutdown', shutdown)
+        app.add_url_rule('/api/v1/reboot', 'reboot', reboot)
+
+    def run(self):
+        app.run(host='0.0.0.0')
 
 
 class Streamer(threading.Thread):
@@ -77,9 +113,17 @@ class Player(object):
 
     def next(self):
         self.index = (self.index + 1) % len(self.urls)
+        self.play()
 
     def previous(self):
         self.index = (self.index - 1) % len(self.urls)
+        self.play()
+
+    def shutdown(self):
+        subprocess.run(["sudo", "shutdown", "-h", "now"])
+
+    def reboot(self):
+        subprocess.run(["sudo", "shutdown", "-r", "now"])
 
     @property
     def url(self):
@@ -96,14 +140,12 @@ class Player(object):
 def next_video(player):
     def inner():
         player.next()
-        player.play()
     return inner
 
 
 def previous_video(player):
     def inner():
         player.previous()
-        player.play()
     return inner
 
 
@@ -146,11 +188,16 @@ def main():
         buttons = setup_buttons({
             21: shutdown,
             22: reboot,
-            20: next_video(player),
+            20: player.next,
             16: previous_video(player),
         })
     else:
         logging.info("Skipping GPIO button setup...")
+
+    logging.info("Starting server...")
+    server = Server(player=player)
+    server.start()
+        
     player.play()
     signal.pause()
 
