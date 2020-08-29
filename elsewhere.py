@@ -12,7 +12,6 @@ import threading
 import urllib.request
 
 import gpiozero
-import inkyphat
 import requests
 
 from flask import Flask, escape, request, jsonify, send_from_directory
@@ -24,11 +23,7 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(l
 
 
 def livestreamer(url):
-    env = {
-        **os.environ,
-        "DISPLAY": ":0.0",
-    }
-    return subprocess.Popen(["livestreamer", "--player", "vlc --fullscreen", url, "best"], env=env)
+    return subprocess.Popen(["livestreamer", "--player", "cvlc --fullscreen", url, "best"])
 
 
 app = Flask(__name__)
@@ -105,10 +100,6 @@ class Player(object):
         logging.info(f"Playing {url}...")
         title = self.title
         logging.info("Setting title to '%s'...", title)
-        inkyphat.set_colour("black")
-        font = inkyphat.ImageFont.truetype(inkyphat.fonts.FredokaOne, 18)
-        inkyphat.text((2, 2), title, 1, font=font)
-        inkyphat.show()
         self.streamer = Streamer(url=url)
         self.streamer.start()
 
