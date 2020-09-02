@@ -6,6 +6,8 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 
 ## Parts
 
+| **Raspberry Pi Zero W** | Adafruit |
+
 - [Raspberry Pi Zero W](https://www.adafruit.com/product/3400)
 - [Pimoroni HDMI 10" IPS LCD Screen Kit](https://www.adafruit.com/product/4337)
 - [Antrader 200pcs Picture Frame Hanging Clips S Hooks Back Board Photo Wall Album Artwork Sawtooth Hanger for 2-4mm Board](https://www.amazon.com/gp/product/B07GLCXVZZ/)
