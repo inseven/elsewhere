@@ -12,7 +12,7 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 | Pimoroni HDMI 10" IPS LCD Screen Kit | [Adafruit](https://www.adafruit.com/product/4337)       | $139.95   |
 | Picture Frame Hoook                  | [Amazon](https://www.amazon.com/gp/product/B07GLCXVZZ/) |           |
 | Micro USB Splitter Cable             | [Amazon](https://www.amazon.com/gp/product/B017OPOG58/) |           |
-| USB-C Panel Mount                    | [eBay](https://www.ebay.com/itm/143134180140)           |           |
+| USB-C Panel Mount                    | [eBay](https://www.ebay.com/itm/143134180140)           | $6.29     |
 
 
 - [JXMOX USB C to Micro USB Adapter, (4-Pack) Type C Female to Micro USB Male Convert Connector Support Charge & Data Sync Compatible with Samsung Galaxy S7/S7 Edge, Nexus 5/6 and Micro USB Devices(Grey)](https://www.amazon.com/gp/product/B07GH5KJH2/)
