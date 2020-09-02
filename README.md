@@ -6,7 +6,10 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 
 ## Parts
 
+| **Part** | **Store** |
+| ----------------------- | -------- |
 | **Raspberry Pi Zero W** | Adafruit |
+
 
 - [Raspberry Pi Zero W](https://www.adafruit.com/product/3400)
 - [Pimoroni HDMI 10" IPS LCD Screen Kit](https://www.adafruit.com/product/4337)
