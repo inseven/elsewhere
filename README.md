@@ -9,7 +9,7 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 | **Part**                             | **Store**                                               | **Price** |
 | ------------------------------------ | ------------------------------------------------------- | --------- |
 | Raspberry Pi Zero W                  | [Adafruit](https://www.adafruit.com/product/3400)       | $10.00    |
-| Pimoroni HDMI 10" IPS LCD Screen Kit | [Adafruit](https://www.adafruit.com/product/4337)       |           |
+| Pimoroni HDMI 10" IPS LCD Screen Kit | [Adafruit](https://www.adafruit.com/product/4337)       | $139.95   |
 | Picture Frame Hoook                  | [Amazon](https://www.amazon.com/gp/product/B07GLCXVZZ/) |           |
 
 
