@@ -13,12 +13,12 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 | Picture Frame Hook                   | [Amazon](https://www.amazon.com/gp/product/B07GLCXVZZ/) | $10.99 (for 200)  |
 | Micro USB Splitter Cable             | [Amazon](https://www.amazon.com/gp/product/B017OPOG58/) | $6.79             |
 | USB-C Panel Mount                    | [eBay](https://www.ebay.com/itm/143134180140)           | $6.29             |
+| HDMI 30 cm Ribbon Cable              | [Adafruit](https://www.adafruit.com/product/3562)       |                   |
+| HDMI Plug Adapter                    | [Adafruit](https://www.adafruit.com/product/3548)       |                   |
+| Mini HDMI Plug Adapter               | [Adafruit](https://www.adafruit.com/product/3552)       |                   |
 
 
 - [JXMOX USB C to Micro USB Adapter, (4-Pack) Type C Female to Micro USB Male Convert Connector Support Charge & Data Sync Compatible with Samsung Galaxy S7/S7 Edge, Nexus 5/6 and Micro USB Devices(Grey)](https://www.amazon.com/gp/product/B07GH5KJH2/)
-- [DIY USB or HDMI Cable Parts - 30 cm Ribbon Cable](https://www.adafruit.com/product/3562)
-- [DIY HDMI Cable Parts - Straight HDMI Plug Adapter](https://www.adafruit.com/product/3548)
-- [DIY HDMI Cable Parts - Straight Mini HDMI Plug Adapter](https://www.adafruit.com/product/3552)
 
 ## Installation
 
