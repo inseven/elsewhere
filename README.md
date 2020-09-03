@@ -13,7 +13,7 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 | Picture Frame Hook                   | [Amazon](https://www.amazon.com/gp/product/B07GLCXVZZ/) | $10.99 (for 200)  |
 | Micro USB Splitter Cable             | [Amazon](https://www.amazon.com/gp/product/B017OPOG58/) | $6.79             |
 | USB-C Panel Mount                    | [eBay](https://www.ebay.com/itm/143134180140)           | $6.29             |
-| HDMI 30 cm Ribbon Cable              | [Adafruit](https://www.adafruit.com/product/3562)       |                   |
+| HDMI 30 cm Ribbon Cable              | [Adafruit](https://www.adafruit.com/product/3562)       | $2.75             |
 | HDMI Plug Adapter                    | [Adafruit](https://www.adafruit.com/product/3548)       |                   |
 | Mini HDMI Plug Adapter               | [Adafruit](https://www.adafruit.com/product/3552)       |                   |
 
