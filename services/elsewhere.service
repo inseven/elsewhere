@@ -1,0 +1,10 @@
+[Unit]
+Description=elsewhere
+
+[Service]
+User=pi
+Group=pi
+ExecStart=/usr/bin/python3 /home/pi/Projects/elsewhere/elsewhere.py /home/pi/Projects/elsewhere/urls.txt
+
+[Install]
+WantedBy=multi-user.target

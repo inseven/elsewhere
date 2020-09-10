@@ -1,0 +1,8 @@
+[Unit]
+Description=boot splash screen
+
+[Service]
+ExecStart=/usr/bin/fim /home/pi/splash.png
+
+[Install]
+WantedBy=basic.target
