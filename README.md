@@ -28,7 +28,7 @@ cd elsewhere
 python3 setup.py
 ```
 
-If you wish to run Elsewhere on startup, the most lightweight way to do this is using crontab:
+To run Elsewhere on startup, add the following to your crontab:
 
 ```
 @reboot /usr/bin/python3 /home/pi/projects/elsewhere/elsewhere.py /home/pi/projects/elsewhere/urls.txt
