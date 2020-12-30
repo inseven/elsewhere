@@ -38,4 +38,4 @@ To run Elsewhere on startup, add the following to your crontab:
 
 - **Device Orientation**
 
-  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt`. You will need to reboot after doing this.
+  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt` and reboot.
