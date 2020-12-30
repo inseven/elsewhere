@@ -21,6 +21,8 @@ Raspberry Pi based picture frame intended for displaying livestreams.
 ## Installation
 
 ```bash
+mkdir -p ~/projects
+cd ~/projects
 git clone git@github.com:jbmorley/elsewhere.git
 cd elsewhere
 python3 setup.py
