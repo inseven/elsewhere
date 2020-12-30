@@ -33,3 +33,7 @@ To run Elsewhere on startup, add the following to your crontab:
 ```
 @reboot /usr/bin/python3 /home/pi/projects/elsewhere/elsewhere.py /home/pi/projects/elsewhere/urls.txt
 ```
+
+## Configuration
+
+If you would like to use the device upside down, you can flip the screen by adding `display_rotate=2` to `/boot/config.txt`.
