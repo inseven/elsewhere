@@ -38,4 +38,4 @@ To run Elsewhere on startup, add the following to your crontab:
 
 - **Device Orientation**
 
-  If you would like to use the device upside down, you can flip the screen by adding `display_rotate=2` to `/boot/config.txt`. You will need to reboot after doing this.
+  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt`. You will need to reboot after doing this.
