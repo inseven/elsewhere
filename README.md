@@ -1,6 +1,6 @@
 # Elsewhere
 
-Raspberry Pi based picture frame intended for displaying livestreams.
+Raspberry Pi based picture frame for displaying livestreams.
 
 ![Render](images/render.png)
 
