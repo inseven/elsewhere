@@ -2,7 +2,7 @@
 
 Raspberry Pi based picture frame for displaying livestreams.
 
-![Render](images/render.png)
+![Elsewhere showing a livestream of Earth from the ISS](images/iss.jpg)
 
 ## Parts
 
