@@ -6,25 +6,26 @@ Raspberry Pi based picture frame for displaying livestreams.
 
 ## Parts
 
-| **Part**                                   | **Link**                                                | Quantity | **Unit Price**     | **Price**   |
-| ------------------------------------------ | ------------------------------------------------------- | -------- | ------------------ | ----------- |
-| Raspberry Pi Zero W                        | [Adafruit](https://www.adafruit.com/product/3400)       | 1        | $10.00             | $10.00      |
-| Pimoroni HDMI 10" IPS LCD Screen Kit       | [Adafruit](https://www.adafruit.com/product/4337)       | 1        | $139.95            | $139.95     |
-| ATXRaspi R3                                | [LowPowerLab](https://lowpowerlab.com/shop/product/91)  | 1        | $17.95             | $17.95      |
-| USB Type-A Female Connector                | [LowPowerLab](https://lowpowerlab.com/shop/product/91)  | 1        | $2.00              | $2.00       |
-| USB A to Micro B Cable, 6"                 | [LowPowerLab](https://lowpowerlab.com/shop/product/91)  | 1        | $4.00              | $4.00       |
-| D-Ring Picture Hanger, M4                  |                                                         | 2        |                    |             |
-| USB-C Panel Mount                          | [eBay](https://www.ebay.com/itm/143134180140)           | 1        | $6.29              | $6.29       |
-| USB-C to Micro USB Adapter                 | [Amazon](https://www.amazon.com/gp/product/B07GH5KJH2/) | 1        | $6.99              | $6.99       |
-| Micro USB Splitter Cable                   | [Amazon](https://www.amazon.com/gp/product/B017OPOG58/) | 1        | $6.79              | $6.79       |
-| HDMI Ribbon Cable, 30 cm                   | [Adafruit](https://www.adafruit.com/product/3562)       | 1        | $2.75              | $2.75       |
-| HDMI Plug Adapter                          | [Adafruit](https://www.adafruit.com/product/3548)       | 1        | $6.50              | $6.50       |
-| Mini HDMI Plug Adapter                     | [Adafruit](https://www.adafruit.com/product/3552)       | 1        | $6.50              | $6.50       |
-| M3 Standoffs, 10mm                         | [McMaster-Carr](https://www.mcmaster.com/94868A166/)    | 8        | $1.24              | $9.92       |
-| 4-40 Socket Head Screws, Low-Profile, 1/4" | [McMaster-Carr](https://www.mcmaster.com/93615A110/)    | 2        | $1.55 (Pack of 10) | $3.10       |
-| M3 Socket Head Screws, Low-Profile, 12mm   | [McMaster-Carr](https://www.mcmaster.com/92855A313/)    | 8        | $0.11 (Pack of 25) | $0.22       |
-| M3 Socket Head Screws, Low-Profile, 6mm    | [McMaster-Carr](https://www.mcmaster.com/92855A307/)    | 8        | $0.30 (Pack of 25) | $0.60       |
-|                                            |                                                         |          |                    | **$223.56** |
+| **Part**                                   | **Link**                                                     | Quantity | **Unit Price**     | **Price**   |
+| ------------------------------------------ | ------------------------------------------------------------ | -------- | ------------------ | ----------- |
+| Raspberry Pi Zero W                        | [Adafruit](https://www.adafruit.com/product/3400)            | 1        | $10.00             | $10.00      |
+| Pimoroni HDMI 10" IPS LCD Screen Kit       | [Adafruit](https://www.adafruit.com/product/4337)            | 1        | $139.95            | $139.95     |
+| ATXRaspi R3                                | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $17.95             | $17.95      |
+| USB Type-A Female Connector                | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $2.00              | $2.00       |
+| USB A to Micro B Cable, 6"                 | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $4.00              | $4.00       |
+| D-Ring Picture Hanger, M4                  |                                                              | 2        |                    |             |
+| USB-C Panel Mount                          | [eBay](https://www.ebay.com/itm/143134180140)                | 1        | $6.29              | $6.29       |
+| USB-C to Micro USB Adapter                 | [Amazon](https://www.amazon.com/gp/product/B07GH5KJH2/)      | 1        | $6.99              | $6.99       |
+| Micro USB Splitter Cable                   | [Amazon](https://www.amazon.com/gp/product/B017OPOG58/)      | 1        | $6.79              | $6.79       |
+| microSD Card, 32GB                         | [Amazon](https://www.amazon.com/SAMSUNG-Select-microSDXC-Adapter-MB-ME128HA/dp/B06XWN9Q99) | 1        | $7.99              | $7.99       |
+| HDMI Ribbon Cable, 30 cm                   | [Adafruit](https://www.adafruit.com/product/3562)            | 1        | $2.75              | $2.75       |
+| HDMI Plug Adapter                          | [Adafruit](https://www.adafruit.com/product/3548)            | 1        | $6.50              | $6.50       |
+| Mini HDMI Plug Adapter                     | [Adafruit](https://www.adafruit.com/product/3552)            | 1        | $6.50              | $6.50       |
+| M3 Standoffs, 10mm                         | [McMaster-Carr](https://www.mcmaster.com/94868A166/)         | 8        | $1.24              | $9.92       |
+| 4-40 Socket Head Screws, Low-Profile, 1/4" | [McMaster-Carr](https://www.mcmaster.com/93615A110/)         | 2        | $1.55 (Pack of 10) | $3.10       |
+| M3 Socket Head Screws, Low-Profile, 12mm   | [McMaster-Carr](https://www.mcmaster.com/92855A313/)         | 8        | $0.11 (Pack of 25) | $0.22       |
+| M3 Socket Head Screws, Low-Profile, 6mm    | [McMaster-Carr](https://www.mcmaster.com/92855A307/)         | 8        | $0.30 (Pack of 25) | $0.60       |
+|                                            |                                                              |          |                    | **$231.55** |
 
 ## Installation
 
