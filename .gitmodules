@@ -1,0 +1,3 @@
+[submodule "schematics/ATX-Raspi"]
+	path = schematics/ATX-Raspi
+	url = git@github.com:LowPowerLab/ATX-Raspi.git
