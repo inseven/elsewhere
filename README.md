@@ -29,13 +29,39 @@ Raspberry Pi based picture frame for displaying livestreams.
 
 ## Installation
 
-```bash
-mkdir -p ~/projects
-cd ~/projects
-git clone git@github.com:jbmorley/elsewhere.git
-cd elsewhere
-python3 setup.py
-```
+1. Install Rasbian.
+
+2. Update Raspbian:
+
+   ```bash
+   sudo apt update
+   sudo apt upgrade --yes
+   ```
+
+3. Install useful packages:
+
+   ```bash
+   sudo apt install --yes \
+       emacs \
+       git \
+       streamlink \
+       mosh \
+       python3-bs4 \
+       python3-flask \
+       python3-gpiozero \
+       python3-pip \
+       python3-pycparser
+   ```
+
+4.   Clone the repository:
+
+   ```bash
+   mkdir -p ~/projects
+   cd ~/projects
+   git clone https://github.com/jbmorley/elsewhere.git
+   cd elsewhere
+   python3 setup.py
+   ```
 
 To run Elsewhere on startup, add the following to your crontab:
 
