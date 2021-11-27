@@ -79,4 +79,6 @@ To run Elsewhere on startup, add the following to your crontab:
 
 ## Builds
 
+Elsewhere is an iterative project, meaning I've put together a number of prototypes along the way. The most recent one still has the 4:3 aspect ratio, and has been happily showing us views from the ISS for the last few months.
+
 ![Elsewhere showing a livestream of Earth from the ISS](images/iss.jpg)
