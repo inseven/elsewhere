@@ -27,7 +27,8 @@ Raspberry Pi based picture frame for displaying livestreams.
 | M3 Socket Head Screw, Low-Profile, 6mm    | [McMaster-Carr](https://www.mcmaster.com/92855A307/)         | 8        | $0.30 (Pack of 25)        | $0.60       |
 | M2.5 Socket Head Screw, 6mm               | [McMaster-Carr](https://www.mcmaster.com/91292A010/)         | 28       | $0.06 ($6.00 for 100) | $1.68       |
 | M2.5 Standoff, 6mm                        | [Digi-Key](https://www.digikey.com/en/products/detail/970060154/732-12827-ND/9488531) | 14       | $0.34 ($16.95 for 50) | $4.76       |
-|                                           |                                                              |          |                           | **$237.99** |
+| Laser-Cut Parts | Ponoko |  |  | $118.99 |
+|                                           |                                                              |          |                           | **$356.98** |
 
 ## Installation
 
