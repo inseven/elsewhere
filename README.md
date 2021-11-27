@@ -2,7 +2,7 @@
 
 Raspberry Pi based picture frame for displaying livestreams.
 
-![Elsewhere showing a livestream of Earth from the ISS](images/iss.jpg)
+![Render of the current Elsewhere design](images/hero.png)
 
 ## Parts
 
@@ -76,3 +76,7 @@ To run Elsewhere on startup, add the following to your crontab:
 - **Device Orientation**
 
   To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt` and reboot.0
+
+## Builds
+
+![Elsewhere showing a livestream of Earth from the ISS](images/iss.jpg)
