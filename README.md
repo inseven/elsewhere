@@ -70,25 +70,26 @@ Raspberry Pi based picture frame for displaying livestreams.
    
    (See https://forums.raspberrypi.com/viewtopic.php?t=324835.)
    
-7. Enable [unattended upgrades](https://wiki.debian.org/UnattendedUpgrades). Note that some of this is done as part of the install script.
-
-8. To configure Elsewhere to run on startup, add the following to your crontab by using `crontab -e`:
+7. Enable all [unattended upgrades](https://wiki.debian.org/UnattendedUpgrades) by uncommenting the following lines in `/etc/apt/apt.conf.d/50unattended-upgrades`:
 
    ```
-   @reboot /bin/bash /home/pi/projects/elsewhere/elsewhere
+   Unattended-Upgrade::Origins-Pattern {
+           // ...
+           "origin=Debian,codename=${distro_codename}-updates";
+           "origin=Debian,codename=${distro_codename}-proposed-updates";
+           // ..
+   }
    ```
 
-## Configuration
+8. Redirect the console during boot by adding `fbcon=map:2` to `/boot/cmdline.txt` to ensure it doesn't appear on the HDMI display.
 
-- **Device Orientation**
+9. Disable the boot splash screen by adding `disable_splash=1` to `/boot/cmdline.txt`.
 
-  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt` and reboot. 
-  N.B. This may not be necessary on Raspbian Bullseye.
+10. Reboot:
 
-* **Disable Console**
-  Redirect the console by adding `fbcon=map:2` to `/boot/cmdline.txt` to ensure it doesn't appear on the HDMI display.
-* **Disable Boot Splash**
-  Disable the boot splash screen by adding `disable_splash=1` to `/boot/cmdline.txt`.
+   ```bash
+   sudo reboot
+   ```
 
 ## Builds
 
