@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 
-xargs -a packages.txt sudo apt-get install -y
+sudo apt-get update
+xargs -a packages.txt sudo apt-get install --yes
