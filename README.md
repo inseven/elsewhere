@@ -32,7 +32,7 @@ Raspberry Pi based picture frame for displaying livestreams.
 
 ## Installation
 
-1. Install Rasbian.
+1. Install Raspberry Pi OS Lite (Bullseye).
 
 2. Update Raspbian:
 
@@ -41,42 +41,54 @@ Raspberry Pi based picture frame for displaying livestreams.
    sudo apt upgrade --yes
    ```
 
-3. Install useful packages:
+3. Install Git:
 
    ```bash
-   sudo apt install --yes \
-       emacs \
-       git \
-       streamlink \
-       mosh \
-       python3-bs4 \
-       python3-flask \
-       python3-gpiozero \
-       python3-pip \
-       python3-pycparser
+   sudo apt install --yes git
    ```
 
-4.   Clone the repository:
+4. Clone the repository:
 
    ```bash
    mkdir -p ~/projects
    cd ~/projects
    git clone https://github.com/jbmorley/elsewhere.git
-   cd elsewhere
-   python3 setup.py
    ```
+   
+5. Install Elsewhere:
 
-To run Elsewhere on startup, add the following to your crontab:
+   ```bash
+   cd elsewhere
+   ./install.sh
+   ```
+   
+5. Update the `dtoverlay` property in `/boot/config.txt` to:
 
-```
-@reboot /usr/bin/python3 /home/pi/projects/elsewhere/elsewhere.py /home/pi/projects/elsewhere/urls.txt
-```
+   ```ini
+   dtoverlay=vc4-fkms-v3d
+   ```
+   
+   (See https://forums.raspberrypi.com/viewtopic.php?t=324835.)
+   
+7. Enable [unattended upgrades](https://wiki.debian.org/UnattendedUpgrades). Note that some of this is done as part of the install script.
+
+8. To configure Elsewhere to run on startup, add the following to your crontab by using `crontab -e`:
+
+   ```
+   @reboot /bin/bash /home/pi/projects/elsewhere/elsewhere
+   ```
 
 ## Configuration
 
 - **Device Orientation**
 
-  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt` and reboot.0
+  To change the orientation of your device, add `display_rotate=2` to `/boot/config.txt` and reboot. 
+  N.B. This may not be necessary on Raspbian Bullseye.
+
+* **Disable Console**
+  Redirect the console by adding `fbcon=map:2` to `/boot/cmdline.txt` to ensure it doesn't appear on the HDMI display.
+* **Disable Boot Splash**
+  Disable the boot splash screen by adding `disable_splash=1` to `/boot/cmdline.txt`.
 
 ## Builds
 
