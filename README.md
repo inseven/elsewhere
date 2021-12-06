@@ -58,7 +58,7 @@ Raspberry Pi based picture frame for displaying livestreams.
 5. Install Elsewhere:
 
    ```bash
-   cd elsewhere
+   cd ~/projects/elsewhere
    ./install.sh
    ```
    
