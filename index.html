@@ -17,6 +17,10 @@
 	  font-weight: 200;
 	  text-align: center;
       }
+
+      h2 {
+	  font-weight: 200;
+      }
       
       .controls {
 	  margin: 0;
@@ -26,11 +30,15 @@
 
       .controls li {
 	  display: block;
-	  background-color: #bff7e2;
+	  background-color: #cfcfcf;
 	  padding: 20px;
 	  border-radius: 6px;
 	  margin: 20px auto;
-	  max-width: 320px;
+      }
+
+      .container {
+	  max-width: 360px;
+	  margin: auto;
       }
 
       .controls li:hover {
@@ -40,13 +48,23 @@
     </style>
   </head>
   <body>
-    <h1>Elsewhere</h1>
-    <ul class="controls">
-      <li id="control-next">Next Stream</li>
-      <li id="control-previous">Previous Stream</li>
-      <li id="control-shutdown">Shutdown</li>
-      <li id="control-reboot">Reboot</li>
-    </ul>
+    <h1>elsewhere</h1>
+    <div class="container">
+      <h2>Streams</h2>
+      <ul class="controls">
+	<li id="control-next">Next</li>
+	<li id="control-previous">Previous</li>
+      </ul>
+      <h2>Device</h2>
+      <ul class="controls">
+	<li id="control-shutdown">Shutdown</li>
+	<li id="control-reboot">Reboot</li>
+      </ul>
+      <h2>Debug</h2>
+      <ul class="controls">
+	<li id="control-terminate">Terminate</li>
+      </ul>
+    </div>
     <script>
       document.getElementById("control-next").addEventListener("click", function() {
 	  fetch('/api/v1/next');
@@ -59,6 +77,9 @@
       });
       document.getElementById("control-reboot").addEventListener("click", function() {
 	  fetch('/api/v1/reboot');
+      });
+      document.getElementById("control-terminate").addEventListener("click", function() {
+	  fetch('/api/v1/terminate');
       });
     </script>
   </body>

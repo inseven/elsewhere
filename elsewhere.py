@@ -28,6 +28,20 @@ def livestreamer(url):
 
 app = Flask(__name__)
 
+
+@app.after_request
+def add_header(r):
+    """
+    Add headers to both force latest IE rendering engine or Chrome Frame,
+    and also to cache the rendered page for 10 minutes.
+    """
+    r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    r.headers["Pragma"] = "no-cache"
+    r.headers["Expires"] = "0"
+    r.headers['Cache-Control'] = 'public, max-age=0'
+    return r
+
+
 @app.route('/')
 def hello():
     return send_from_directory(ROOT_DIRECTORY, 'index.html')
@@ -50,10 +64,13 @@ class Server(threading.Thread):
         def reboot():
             self.player.reboot()
             return jsonify({})
+        def terminate():
+            self.player.terminate()
         app.add_url_rule('/api/v1/next', 'next', next)
         app.add_url_rule('/api/v1/previous', 'previous', previous)
         app.add_url_rule('/api/v1/shutdown', 'shutdown', shutdown)
         app.add_url_rule('/api/v1/reboot', 'reboot', reboot)
+        app.add_url_rule('/api/v1/terminate', 'terminate', terminate)
 
     def run(self):
         app.run(host='0.0.0.0')
@@ -118,6 +135,10 @@ class Player(object):
     def reboot(self):
         subprocess.check_call(["sync"])
         subprocess.check_call(["sudo", "/sbin/reboot"])
+
+    def terminate(self):
+        self.streamer.stop()
+        exit()
 
     @property
     def url(self):
