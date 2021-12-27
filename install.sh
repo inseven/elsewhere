@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
-set -o pipefile
+set -o pipefail
+set -u
 
 # Install package dependencies.
 sudo apt-get update
@@ -12,13 +13,11 @@ xargs -a /home/pi/projects/elsewhere/packages.txt sudo apt-get install --yes
 echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | sudo debconf-set-selections
 sudo dpkg-reconfigure -f noninteractive unattended-upgrades
 
-# Initial urls.txt configuration.
-echo "ustream.tv/channel/iss-hdev-payload" > /home/pi/projects/elsewhere/urls.txt
-
-
+# Install Python dependencies
 pip3 install -r requirements.txt
 
 # Install the service
 sudo atx-monitor/atx-monitor install
 
-
+# Initial urls.txt configuration.
+# echo "ustream.tv/channel/iss-hdev-payload" > /home/pi/projects/elsewhere/urls.txt
