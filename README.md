@@ -1,5 +1,7 @@
 # Elsewhere
 
+[![Build](https://github.com/inseven/elsewhere/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/elsewhere/actions/workflows/build.yaml)
+
 Raspberry Pi based picture frame for displaying livestreams.
 
 ![Render of the current Elsewhere design](images/hero.png)
