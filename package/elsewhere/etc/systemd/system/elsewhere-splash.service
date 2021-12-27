@@ -1,0 +1,9 @@
+[Unit]
+Description=Elsewhere splash screen
+After=local-fs.target
+
+[Service]
+ExecStart=/bin/bash /usr/share/elsewhere/splash/set.sh
+
+[Install]
+WantedBy=sysinit.target

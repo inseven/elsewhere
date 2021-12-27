@@ -7,3 +7,4 @@ urls.txt
 *.pro
 __pycache__
 package/elsewhere.deb
+package/elsewhere/usr/share/elsewhere/splash/images

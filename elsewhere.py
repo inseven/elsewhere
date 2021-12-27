@@ -19,9 +19,12 @@ import requests
 from flask import Flask, escape, request, jsonify, send_from_directory
 
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-SPLASH_IMAGE_PATH = os.path.join(ROOT_DIRECTORY, "splash", "splash.png")
-SHUTTING_DOWN_IMAGE_PATH = os.path.join(ROOT_DIRECTORY, "splash", "shutting-down.png")
-FIM_SCRIPT_PATH = os.path.join(ROOT_DIRECTORY, "splash", "script.txt")
+ELSEWHERE_DIRECTORY = "/usr/share/elsewhere"
+SPLASH_DIRECTORY = os.path.join(ELSEWHERE_DIRECTORY, "splash")
+IMAGES_DIRECTORY = os.path.join(SPLASH_DIRECTORY, "images")
+SPLASH_IMAGE_PATH = os.path.join(IMAGES_DIRECTORY, "splash.png")
+SHUTTING_DOWN_IMAGE_PATH = os.path.join(IMAGES_DIRECTORY, "shutting-down.png")
+FIM_SCRIPT_PATH = os.path.join(SPLASH_DIRECTORY, "script.txt")
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
 
