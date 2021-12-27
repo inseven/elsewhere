@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-  
+
     name: Build
     runs-on: raspbian-bullseye
 
@@ -24,7 +24,7 @@ jobs:
 
     - name: Build
       run: |
-        ./build.sh
+        ./scripts/build.sh
 
     - name: Archive the Debian package
       uses: actions/upload-artifact@v2
