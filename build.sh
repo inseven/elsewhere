@@ -6,6 +6,7 @@ set -u
 
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 ROOT_DIRECTORY="$SCRIPTS_DIRECTORY"
+SOURCE_DIRECTORY="$ROOT_DIRECTORY/package"
 
 font="fonts/Inter/static/Inter-Thin.ttf"
 
@@ -23,7 +24,7 @@ if [ -d "$PYTHONUSERBASE" ] ; then
 fi
 mkdir -p "$PYTHONUSERBASE"
 export PATH="$PYTHONUSERBASE/bin":$PATH
-pip3 install --user -r "$ROOT_DIRECTORY/requirements.txt"
+pip3 install --user -r "$SOURCE_DIRECTORY/requirements.txt"
 
 echo "Building Debian package..."
 cd package
