@@ -1,3 +1,8 @@
 #!/bin/sh
 
 systemctl enable elsewhere-splash.service
+systemctl enable elsewhere.service
+
+systemctl start elsewhere-splash.service
+systemctl start elsewhere.service
+
