@@ -2,6 +2,4 @@
 
 DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-echo "Updating Python dependencies..."
-python3 -m pip install --upgrade -r "$DIRECTORY/requirements.txt"
 python3 "$DIRECTORY/elsewhere.py" "$DIRECTORY/urls.txt"
