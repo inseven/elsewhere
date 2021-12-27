@@ -1,0 +1,13 @@
+[Unit]
+Description=ATX Monitor
+After=network.target
+
+[Service]
+ExecStart={{ path }} monitor
+StandardOutput=inherit
+StandardError=inherit
+Restart=on-failure
+User=pi
+
+[Install]
+WantedBy=multi-user.target

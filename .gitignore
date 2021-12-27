@@ -5,3 +5,4 @@ urls.txt
 *.l#*
 *.job
 *.pro
+__pycache__

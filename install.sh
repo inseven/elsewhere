@@ -16,5 +16,9 @@ sudo dpkg-reconfigure -f noninteractive unattended-upgrades
 echo "ustream.tv/channel/iss-hdev-payload" > /home/pi/projects/elsewhere/urls.txt
 
 
+pip3 install -r requirements.txt
+
+# Install the service
+sudo atx-monitor/atx-monitor install
 
 
