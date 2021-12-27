@@ -11,6 +11,3 @@ sudo apt-get upgrade --yes
 # Enable unattended updates.
 echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | sudo debconf-set-selections
 sudo dpkg-reconfigure -f noninteractive unattended-upgrades
-
-# Install Python dependencies
-pip3 install -r requirements.txt
