@@ -3,7 +3,7 @@ Description=Elsewhere
 After=network.target
 
 [Service]
-ExecStart=/home/pi/projects/elsewhere/elsewhere
+ExecStart=/usr/share/elsewhere/elsewhere/elsewhere
 StandardOutput=inherit
 StandardError=inherit
 Restart=always
