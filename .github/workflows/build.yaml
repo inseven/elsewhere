@@ -25,3 +25,9 @@ jobs:
     - name: Build
       run: |
         ./build.sh
+
+    - name: Archive the Debian package
+      uses: actions/upload-artifact@v2
+      with:
+        name: elsewhere
+        path: package/elsewhere.deb
