@@ -30,7 +30,7 @@ logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(l
 
 
 def livestreamer(url):
-    return subprocess.Popen(["/home/pi/.local/bin/streamlink", "--player", "cvlc --fullscreen --no-video-title-show", url, "best"])
+    return subprocess.Popen(["streamlink", "--player", "cvlc --fullscreen --no-video-title-show", url, "best"])
 
 
 app = Flask(__name__)

@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
 DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+SHARE_DIRECTORY="$DIRECTORY/.."
 
+# Use our own Python libraries.
+export PYTHONUSERBASE="$SHARE_DIRECTORY/python"
+export PATH="$PYTHONUSERBASE/bin":$PATH
+
+# Run the service.
 python3 "$DIRECTORY/elsewhere.py" "$DIRECTORY/urls.txt"
