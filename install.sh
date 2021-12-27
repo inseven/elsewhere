@@ -7,7 +7,6 @@ set -u
 # Install package dependencies.
 sudo apt-get update
 sudo apt-get upgrade --yes
-xargs -a /home/pi/projects/elsewhere/packages.txt sudo apt-get install --yes
 
 # Enable unattended updates.
 echo unattended-upgrades unattended-upgrades/enable_auto_updates boolean true | sudo debconf-set-selections
