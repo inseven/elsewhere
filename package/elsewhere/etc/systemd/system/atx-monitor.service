@@ -1,9 +1,9 @@
 [Unit]
-Description=ATX Monitor
+Description=Elsewhere ATXRaspi monitor
 After=network.target
 
 [Service]
-ExecStart={{ path }} monitor
+ExecStart=/usr/share/elsewhere/atx-monitor/atx-monitor monitor
 StandardOutput=inherit
 StandardError=inherit
 Restart=on-failure
