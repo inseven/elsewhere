@@ -6,3 +6,4 @@ urls.txt
 *.job
 *.pro
 __pycache__
+package/elsewhere.deb
