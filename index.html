@@ -60,10 +60,6 @@
 	<li id="control-shutdown">Shutdown</li>
 	<li id="control-reboot">Reboot</li>
       </ul>
-      <h2>Debug</h2>
-      <ul class="controls">
-	<li id="control-terminate">Terminate</li>
-      </ul>
     </div>
     <script>
       document.getElementById("control-next").addEventListener("click", function() {
@@ -77,9 +73,6 @@
       });
       document.getElementById("control-reboot").addEventListener("click", function() {
 	  fetch('/api/v1/reboot');
-      });
-      document.getElementById("control-terminate").addEventListener("click", function() {
-	  fetch('/api/v1/terminate');
       });
     </script>
   </body>

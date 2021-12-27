@@ -9,21 +9,25 @@ import signal
 import subprocess
 import sys
 import threading
+import time
 import urllib.request
 
+import RPi.GPIO as GPIO
 import gpiozero
 import requests
 
 from flask import Flask, escape, request, jsonify, send_from_directory
 
 ROOT_DIRECTORY = os.path.dirname(os.path.abspath(__file__))
-
+SPLASH_IMAGE_PATH = os.path.join(ROOT_DIRECTORY, "splash", "splash.png")
+SHUTTING_DOWN_IMAGE_PATH = os.path.join(ROOT_DIRECTORY, "splash", "shutting-down.png")
+FIM_SCRIPT_PATH = os.path.join(ROOT_DIRECTORY, "splash", "script.txt")
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
 
 
 def livestreamer(url):
-    return subprocess.Popen(["/usr/local/bin/streamlink", "--player", "cvlc --fullscreen --no-video-title-show", url, "best"])
+    return subprocess.Popen(["/home/pi/.local/bin/streamlink", "--player", "cvlc --fullscreen --no-video-title-show", url, "best"])
 
 
 app = Flask(__name__)
@@ -58,19 +62,16 @@ class Server(threading.Thread):
         def previous():
             self.player.previous()
             return jsonify({'url': self.player.url})
-        def shutdown():
-            self.player.shutdown()
+        def shutdown_action():
+            shutdown()
             return jsonify({})
-        def reboot():
-            self.player.reboot()
+        def reboot_action():
+            reboot()
             return jsonify({})
-        def terminate():
-            self.player.terminate()
         app.add_url_rule('/api/v1/next', 'next', next)
         app.add_url_rule('/api/v1/previous', 'previous', previous)
-        app.add_url_rule('/api/v1/shutdown', 'shutdown', shutdown)
-        app.add_url_rule('/api/v1/reboot', 'reboot', reboot)
-        app.add_url_rule('/api/v1/terminate', 'terminate', terminate)
+        app.add_url_rule('/api/v1/shutdown', 'shutdown', shutdown_action)
+        app.add_url_rule('/api/v1/reboot', 'reboot', reboot_action)
 
     def run(self):
         app.run(host='0.0.0.0')
@@ -92,6 +93,7 @@ class Streamer(threading.Thread):
                 if self._should_stop:
                     return
                 else:
+                    # TODO: Rename to streamlink
                     process = livestreamer(self.url)
                     self.process = process
             process.wait()
@@ -99,8 +101,13 @@ class Streamer(threading.Thread):
     def stop(self):
         with self.lock:
             self._should_stop = True
-            self.process.terminate()
+            self.process.send_signal(signal.SIGINT)
+            # self.process.kill()
         self.join()
+
+
+def show_image(path):
+    subprocess.check_call(["/usr/bin/fim", "--quiet", path, "--execute-script", FIM_SCRIPT_PATH])
 
 
 class Player(object):
@@ -118,6 +125,7 @@ class Player(object):
         title = self.title
         logging.info("Setting title to '%s'...", title)
         self.streamer = Streamer(url=url)
+        self.streamer.setDaemon(True)
         self.streamer.start()
 
     def next(self):
@@ -128,17 +136,8 @@ class Player(object):
         self.index = (self.index - 1) % len(self.urls)
         self.play()
 
-    def shutdown(self):
-        subprocess.check_call(["sync"])
-        subprocess.check_call(["sudo", "/sbin/shutdown", "-h", "now"])
-
-    def reboot(self):
-        subprocess.check_call(["sync"])
-        subprocess.check_call(["sudo", "/sbin/reboot"])
-
-    def terminate(self):
+    def cleanup(self):
         self.streamer.stop()
-        exit()
 
     @property
     def url(self):
@@ -161,11 +160,33 @@ def setup_buttons(commands):
     return buttons
 
 
+def shutdown():
+    # Signal the ATXRaspi (short button press).
+    soft_button = 23
+    GPIO.setup(soft_button, GPIO.OUT)
+    GPIO.output(soft_button, GPIO.HIGH)
+    time.sleep(0.4)
+    GPIO.output(soft_button, GPIO.LOW)
+
+
+def reboot():
+    # Signal the ATXRaspi (long button press).
+    soft_button = 23
+    GPIO.setup(soft_button, GPIO.OUT)
+    GPIO.output(soft_button, GPIO.HIGH)
+    time.sleep(4.1)
+    GPIO.output(soft_button, GPIO.LOW)
+
+
 def main():
     parser = argparse.ArgumentParser(description="Livestream picture frame software.")
     parser.add_argument("streams", help="URL containing new-line separated livestream URLs")
     parser.add_argument("--no-gpio", action="store_true", default=False, help="disable GPIO for channel controls")
     options = parser.parse_args()
+
+    show_image(SPLASH_IMAGE_PATH)
+    GPIO.setmode(GPIO.BCM)
+    
     content = None
     if os.path.exists(options.streams):
         with open(options.streams, "r") as fh:
@@ -179,18 +200,25 @@ def main():
     if not options.no_gpio:
         logging.info("Setting up GPIO buttons...")
         buttons = setup_buttons({
-            21: player.shutdown,
-            22: player.reboot,
-            20: player.next,
-            16: player.previous,
+            14: player.previous,
+            15: player.next,
         })
     else:
         logging.info("Skipping GPIO button setup...")
 
     logging.info("Starting server...")
     server = Server(player=player)
+    server.setDaemon(True)
     server.start()
-        
+
+    def kill(*args):
+        player.cleanup()
+        show_image(SHUTTING_DOWN_IMAGE_PATH)
+        exit()
+
+    signal.signal(signal.SIGINT, kill)
+    signal.signal(signal.SIGTERM, kill)
+    
     player.play()
     signal.pause()
 
