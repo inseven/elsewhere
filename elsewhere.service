@@ -1,0 +1,14 @@
+[Unit]
+Description=Elsewhere
+After=network.target
+
+[Service]
+ExecStart=/home/pi/projects/elsewhere/elsewhere
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+TimeoutSec=10
+
+[Install]
+WantedBy=multi-user.target
