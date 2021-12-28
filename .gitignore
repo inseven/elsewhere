@@ -1,5 +1,5 @@
 *~
-*.b#*
+0;95;0c*.b#*
 *.s#*
 *.l#*
 *.job
@@ -9,3 +9,4 @@ package/elsewhere.deb
 package/elsewhere/usr/share/elsewhere/splash/images
 package/elsewhere/usr/share/elsewhere/python
 .local
+build

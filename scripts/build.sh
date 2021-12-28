@@ -7,10 +7,17 @@ set -u
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
 SOURCE_DIRECTORY="$ROOT_DIRECTORY/package"
+BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
 
 font="fonts/Inter/static/Inter-Thin.ttf"
 
 source "${SCRIPTS_DIRECTORY}/environment.sh"
+
+echo "Cleaning build directory..."
+if [ -d "$BUILD_DIRECTORY" ] ; then
+    rm -r "$BUILD_DIRECTORY"
+fi
+mkdir -p "$BUILD_DIRECTORY"
 
 echo "Getting current version..."
 VERSION=$( changes version )
@@ -34,5 +41,6 @@ export PATH="$PYTHONUSERBASE/bin":$PATH
 pip3 install --user -r "$SOURCE_DIRECTORY/requirements.txt"
 
 echo "Building Debian package..."
-cd package
+cd "$SOURCE_DIRECTORY"
 dpkg-deb --build elsewhere
+mv elsewhere.deb "$BUILD_DIRECTORY/elsewhere-$VERSION.deb"
