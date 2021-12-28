@@ -10,13 +10,18 @@ SOURCE_DIRECTORY="$ROOT_DIRECTORY/package"
 
 font="fonts/Inter/static/Inter-Thin.ttf"
 
+source "${SCRIPTS_DIRECTORY}/environment.sh"
+
+echo "Getting current version..."
+VERSION=$( changes version )
+
 echo "Generating splash screens..."
 SPLASH_BUILD_DIRECTORY="$SOURCE_DIRECTORY/elsewhere/usr/share/elsewhere/splash/images"
 if [ -d "$SPLASH_BUILD_DIRECTORY" ] ; then
     rm -r "$SPLASH_BUILD_DIRECTORY"
 fi
 mkdir -p "$SPLASH_BUILD_DIRECTORY"
-convert -background black -fill white -font "$font" -size 1024x768 -pointsize 64 -gravity center label:"Elsewhere" -size 100x100 -pointsize 24 label:"1.0.0" -geometry +0+240 -composite "$SPLASH_BUILD_DIRECTORY/splash.png"
+convert -background black -fill white -font "$font" -size 1024x768 -pointsize 64 -gravity center label:"Elsewhere" -size 100x100 -pointsize 24 label:"${VERSION}" -geometry +0+240 -composite "$SPLASH_BUILD_DIRECTORY/splash.png"
 convert -background black -fill white -font "$font" -size 1024x768 -pointsize 32 -gravity center label:"Shutting Down..." "$SPLASH_BUILD_DIRECTORY/shutting-down.png"
 
 echo "Generating local Python cache..."
