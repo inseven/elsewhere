@@ -13,6 +13,22 @@ font="fonts/Inter/static/Inter-Thin.ttf"
 
 source "${SCRIPTS_DIRECTORY}/environment.sh"
 
+INSTALL=${INSTALL:-false}
+while [[ $# -gt 0 ]]
+do
+    key="$1"
+    case $key in
+        -i|--install)
+        INSTALL=true
+        shift
+        ;;
+        *)
+        POSITIONAL+=("$1")
+        shift
+        ;;
+    esac
+done
+
 echo "Cleaning build directory..."
 if [ -d "$BUILD_DIRECTORY" ] ; then
     rm -r "$BUILD_DIRECTORY"
@@ -41,6 +57,11 @@ export PATH="$PYTHONUSERBASE/bin":$PATH
 pip3 install --user -r "$SOURCE_DIRECTORY/requirements.txt"
 
 echo "Building Debian package..."
+PACKAGE="$BUILD_DIRECTORY/elsewhere-$VERSION.deb"
 cd "$SOURCE_DIRECTORY"
 dpkg-deb --build elsewhere
-mv elsewhere.deb "$BUILD_DIRECTORY/elsewhere-$VERSION.deb"
+mv elsewhere.deb "$PACKAGE"
+
+if $INSTALL ; then
+    sudo dpkg -i "$PACKAGE"
+fi
