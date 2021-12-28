@@ -5,21 +5,29 @@ set -o pipefail
 set -u
 
 SCRIPTS_DIRECTORY="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
-ROOT_DIRECTORY="$SCRIPTS_DIRECTORY/.."
-SOURCE_DIRECTORY="$ROOT_DIRECTORY/package"
-BUILD_DIRECTORY="$ROOT_DIRECTORY/build"
+ROOT_DIRECTORY="${SCRIPTS_DIRECTORY}/.."
+SOURCE_DIRECTORY="${ROOT_DIRECTORY}/package"
+BUILD_DIRECTORY="${ROOT_DIRECTORY}/build"
+CHANGES_DIRECTORY="${SCRIPTS_DIRECTORY}/changes"
+
+CHANGES_GITHUB_RELEASE_SCRIPT="${CHANGES_DIRECTORY}/examples/gh-release.sh"
 
 font="fonts/Inter/static/Inter-Thin.ttf"
 
 source "${SCRIPTS_DIRECTORY}/environment.sh"
 
 INSTALL=${INSTALL:-false}
+RELEASE=${RELEASE:-false}
 while [[ $# -gt 0 ]]
 do
     key="$1"
     case $key in
         -i|--install)
         INSTALL=true
+        shift
+        ;;
+        -r|--release)
+        RELEASE=true
         shift
         ;;
         *)
@@ -62,6 +70,16 @@ cd "$SOURCE_DIRECTORY"
 dpkg-deb --build elsewhere
 mv elsewhere.deb "$PACKAGE"
 
+if $RELEASE ; then
+    changes \
+        release \
+        --skip-if-empty \
+	--push \
+	--exec "${CHANGES_GITHUB_RELEASE_SCRIPT}" \
+        "$PACKAGE"
+fi
+
 if $INSTALL ; then
+    echo "Installing..."
     sudo dpkg -i "$PACKAGE"
 fi

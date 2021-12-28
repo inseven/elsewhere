@@ -27,6 +27,9 @@ jobs:
       run: scripts/install-dependencies.sh
 
     - name: Build
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+	RELEASE: ${{ github.ref == 'refs/heads/main' }}
       run: |
         ./scripts/build.sh
 
