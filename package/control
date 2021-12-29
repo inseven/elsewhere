@@ -1,5 +1,5 @@
 Package: elsewhere
-Version: 1.0
+Version: $VERSION
 Section: custom
 Priority: optional
 Architecture: all

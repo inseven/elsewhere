@@ -44,7 +44,10 @@ fi
 mkdir -p "$BUILD_DIRECTORY"
 
 echo "Getting current version..."
-VERSION=$( changes version )
+export VERSION=$( changes version )
+
+echo "Generating control file..."
+cat "${SOURCE_DIRECTORY}/control" | envsubst > "${SOURCE_DIRECTORY}/elsewhere/DEBIAN/control"
 
 echo "Generating splash screens..."
 SPLASH_BUILD_DIRECTORY="$SOURCE_DIRECTORY/elsewhere/usr/share/elsewhere/splash/images"
@@ -65,7 +68,7 @@ export PATH="$PYTHONUSERBASE/bin":$PATH
 pip3 install --user -r "$SOURCE_DIRECTORY/requirements.txt"
 
 echo "Building Debian package..."
-PACKAGE="$BUILD_DIRECTORY/elsewhere-$VERSION.deb"
+PACKAGE="$BUILD_DIRECTORY/elsewhere_$VERSION.deb"
 cd "$SOURCE_DIRECTORY"
 dpkg-deb --build elsewhere
 mv elsewhere.deb "$PACKAGE"

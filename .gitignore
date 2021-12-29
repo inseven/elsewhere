@@ -8,5 +8,6 @@ __pycache__
 package/elsewhere.deb
 package/elsewhere/usr/share/elsewhere/splash/images
 package/elsewhere/usr/share/elsewhere/python
+package/elsewhere/DEBIAN/control
 .local
 build
