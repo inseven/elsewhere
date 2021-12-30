@@ -38,3 +38,11 @@ jobs:
       with:
         name: build
         path: build/*
+
+    - name: Trigger repository update
+      uses: peter-evans/repository-dispatch@v1
+      if: ${{ github.ref == 'refs/heads/main' }}
+      with:
+        token: ${{ secrets.TOKEN }}
+        repository: jbmorley/debian-repository
+        event-type: build
