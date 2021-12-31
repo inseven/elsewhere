@@ -98,6 +98,7 @@ function sign-deb {
     local PACKAGE="$1"
 
     echo "Enabling preset passphrases..."
+    mkdir -p ~/.gnupg
     grep -qxF "allow-preset-passphrase" ~/.gnupg/gpg-agent.conf || echo allow-preset-passphrase  >> ~/.gnupg/gpg-agent.conf
     gpgconf --kill gpg-agent
 
