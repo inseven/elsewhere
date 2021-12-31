@@ -84,6 +84,45 @@ if $RELEASE ; then
         "$PACKAGE"
 fi
 
+function sign-deb {
+
+    function cleanup {
+	echo "Restarting gpg-agent (clearing keys)..."
+	gpgconf --kill gpg-agent
+	gpg --batch --yes --delete-secret-key "${PRIVATE_KEY_FINGERPRINT}"
+	gpg --batch --yes --delete-key "${PRIVATE_KEY_FINGERPRINT}"
+    }
+
+    trap cleanup EXIT
+
+    local PACKAGE="$1"
+
+    echo "Enabling preset passphrases..."
+    grep -qxF "allow-preset-passphrase" ~/.gnupg/gpg-agent.conf || echo allow-preset-passphrase  >> ~/.gnupg/gpg-agent.conf
+    gpgconf --kill gpg-agent
+
+    echo "Importing private key..."
+    echo "${PRIVATE_KEY}" > private-key.gpg
+    echo "${PRIVATE_KEY_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --import private-key.gpg
+    rm private-key.gpg
+
+    echo "Setting passphrase..."
+    KEYGRIPS=$(gpg-connect-agent -q 'keyinfo --list' /bye | awk '/KEYINFO/ { print $3 }')
+    for KEYGRIP in $KEYGRIPS
+    do
+	echo "$PRIVATE_KEY_PASSPHRASE" | /usr/lib/gnupg/gpg-preset-passphrase --preset $KEYGRIP
+    done
+
+    echo "Signing package..."
+    dpkg-sig \
+	-k 36A9CC5F5F8F127D \
+	--sign builder \
+	"$PACKAGE"
+    echo "Done."
+}
+
+sign-deb "$PACKAGE"
+
 if $INSTALL ; then
     echo "Installing..."
     sudo apt-get install "$PACKAGE" --yes

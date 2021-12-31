@@ -1,5 +1,5 @@
 name: Build
-
+0;95;0c
 on:
   pull_request:
     branches: [ main ]
@@ -30,6 +30,9 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         RELEASE: ${{ github.ref == 'refs/heads/main' }}
+        PRIVATE_KEY_FINGERPRINT: ${{ secrets.PRIVATE_KEY_FINGERPRINT }}
+        PRIVATE_KEY_PASSPHRASE: ${{ secrets.PRIVATE_KEY_PASSPHRASE }}
+        PRIVATE_KEY: ${{ secrets.PRIVATE_KEY }}
       run: |
         ./scripts/build.sh
 
