@@ -37,43 +37,62 @@ Raspberry Pi based picture frame for displaying livestreams.
 
 1. Install Raspberry Pi OS Lite (Bullseye).
 
-2. Update Raspbian:
+2. Add the package repository to `/etc/apt/sources.list`:
 
    ```bash
-   sudo apt update
-   sudo apt upgrade --yes
+   deb [trusted=yes] http://packages.inseven.co.uk/raspbian/ ./
    ```
 
-3. Install Git:
-
-   ```bash
-   sudo apt install --yes git
-   ```
-
-4. Clone the repository:
-
-   ```bash
-   mkdir -p ~/projects
-   cd ~/projects
-   git clone https://github.com/jbmorley/elsewhere.git
-   ```
-   
-5. Install Elsewhere:
-
-   ```bash
-   cd ~/projects/elsewhere
-   ./install.sh
-   ```
-   
-5. Update the `dtoverlay` property in `/boot/config.txt` to:
+3. Update the `dtoverlay` property in `/boot/config.txt` to:
 
    ```ini
    dtoverlay=vc4-fkms-v3d
    ```
-   
+
    (See https://forums.raspberrypi.com/viewtopic.php?t=324835.)
    
-7. Enable all [unattended upgrades](https://wiki.debian.org/UnattendedUpgrades) by uncommenting the following lines in `/etc/apt/apt.conf.d/50unattended-upgrades`:
+4. Add `fbcon=map:2 disable_splash=1 ` to `/boot/cmdline.txt`.
+
+   These changes are as follows:
+
+   - `fbcon=map:2` – Redirects the console during boot to ensure it doesn't appear on the HDMI display.
+   - `disable_splash=1` – Disable the boot splash screen.
+
+5. Disable the Serial Port and SPI:
+
+   ```bash
+   sudo raspi-config
+   ```
+
+   - Disable Serial Port
+     - Interface Options
+     - Serial Port
+     - Login Shell: No
+     - Serial Port Hardware: No
+   - Disable SPI
+     - Interface Options
+     - SPI
+     - Enabled: No
+
+6. Reboot:
+
+   ```bash
+   sudo reboot
+   ```
+
+7. Update and upgrade Raspbian, and install Elsewhere:
+
+   ```bash
+   sudo apt update
+   sudo apt upgrade --yes
+   sudo apt install elsewhere --yes
+   ```
+
+8. Assuming everything has gone to plan, Elsewhere should now be running.
+
+#### Unattended Upgrades
+
+1. Enable all [unattended upgrades](https://wiki.debian.org/UnattendedUpgrades) by uncommenting the following lines in `/etc/apt/apt.conf.d/50unattended-upgrades`:
 
    ```
    Unattended-Upgrade::Origins-Pattern {
@@ -84,11 +103,7 @@ Raspberry Pi based picture frame for displaying livestreams.
    }
    ```
 
-8. Redirect the console during boot by adding `fbcon=map:2` to `/boot/cmdline.txt` to ensure it doesn't appear on the HDMI display.
-
-9. Disable the boot splash screen by adding `disable_splash=1` to `/boot/cmdline.txt`.
-
-10. Reboot:
+2. Reboot:
 
    ```bash
    sudo reboot
