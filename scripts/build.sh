@@ -93,8 +93,6 @@ function sign-deb {
 	gpg --batch --yes --delete-key "${PRIVATE_KEY_FINGERPRINT}"
     }
 
-    trap cleanup EXIT
-
     local PACKAGE="$1"
 
     echo "Enabling preset passphrases..."
@@ -106,6 +104,7 @@ function sign-deb {
     echo "${PRIVATE_KEY}" > private-key.gpg
     echo "${PRIVATE_KEY_PASSPHRASE}" | gpg --batch --passphrase-fd 0 --import private-key.gpg
     rm private-key.gpg
+    trap cleanup EXIT
 
     echo "Setting passphrase..."
     KEYGRIPS=$(gpg-connect-agent -q 'keyinfo --list' /bye | awk '/KEYINFO/ { print $3 }')
