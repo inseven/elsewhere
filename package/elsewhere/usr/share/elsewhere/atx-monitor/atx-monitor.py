@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-# Copyright (c) 2021 Jason Morley
+# Copyright (c) 2018-2021 Jason Morley
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -19,7 +19,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-
 
 import argparse
 import logging
@@ -55,14 +54,14 @@ def wait_for_low(channel, maximum_duration):
 
 @cli.command("monitor")
 def command_monitor(options):
-    
+
     boot_ok = 8
     shutdown = 7
 
     GPIO.setmode(GPIO.BCM)
     GPIO.setup(boot_ok, GPIO.OUT)
     GPIO.setup(shutdown, GPIO.IN)
-    
+
     # Reset the board by toggling the the boot OK signal
     GPIO.output(boot_ok, GPIO.LOW)
     time.sleep(0.1)
@@ -86,7 +85,7 @@ def command_monitor(options):
                 break
 
     # Note that we don't clean up the GPIO to ensure the boot OK signal remains high.
-                
+
 
 def main():
     parser = cli.CommandParser()
