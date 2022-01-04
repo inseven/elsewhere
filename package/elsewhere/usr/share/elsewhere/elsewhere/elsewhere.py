@@ -28,6 +28,7 @@ import re
 import signal
 import subprocess
 import sys
+import tempfile
 import threading
 import time
 import urllib.request
@@ -45,6 +46,7 @@ IMAGES_DIRECTORY = os.path.join(SPLASH_DIRECTORY, "images")
 SPLASH_IMAGE_PATH = os.path.join(IMAGES_DIRECTORY, "elsewhere.png")
 SHUTTING_DOWN_IMAGE_PATH = os.path.join(IMAGES_DIRECTORY, "shutting-down.png")
 FIM_SCRIPT_PATH = os.path.join(SPLASH_DIRECTORY, "script.txt")
+FONT_PATH = os.path.join(ELSEWHERE_DIRECTORY, "fonts/Inter/static/Inter-Thin.ttf")
 
 logging.basicConfig(level=logging.INFO, format="[%(asctime)s] [%(process)d] [%(levelname)s] %(message)s", datefmt='%Y-%m-%d %H:%M:%S %z')
 
@@ -133,6 +135,22 @@ def show_image(path):
     subprocess.check_call(["/usr/bin/fim", "--quiet", path, "--execute-script", FIM_SCRIPT_PATH])
 
 
+def show_title(title):
+    with tempfile.TemporaryDirectory() as directory:
+        logging.info("Setting title to '%s'...", title)
+        image_path = os.path.join(directory, "image.png")
+        subprocess.check_call(["/usr/bin/convert",
+                               "-background", "black",
+                               "-fill", "white",
+                               "-font", FONT_PATH,
+                               "-size", "1024x768",
+                               "-pointsize", "48",
+                               "-gravity", "center",
+                               "label:%s" % (title, ),
+                               image_path])
+        show_image(image_path)
+
+
 class Player(object):
 
     def __init__(self, urls):
@@ -146,7 +164,8 @@ class Player(object):
         url = self.url
         logging.info(f"Playing {url}...")
         title = self.title
-        logging.info("Setting title to '%s'...", title)
+        show_title(title)
+
         self.streamer = Streamer(url=url)
         self.streamer.setDaemon(True)
         self.streamer.start()
