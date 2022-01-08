@@ -109,6 +109,30 @@ Raspberry Pi based picture frame for displaying livestreams.
    sudo reboot
    ```
 
+## Troubleshooting
+
+### Device takes too long to shutdown and ATXRaspi doesn't cut power
+
+- Re-enable the console by removing `fbcon=map:2` from `/boot/cmdline.txt`.
+- Check the the shutdown logs; are any services taking a long time to stop?
+
+### Tailscale doesn't takes too long to stop
+
+Customise the Tailscale service to shorten the shutdown timeout:
+
+- Override the service:
+
+  ```bash
+  sudo systemctl edit tailscaled.service
+  ```
+
+- Add the following section:
+
+  ```
+  [Service]
+  TimeoutSec=5
+  ```
+
 ## Builds
 
 Elsewhere is an iterative project, meaning I've put together a number of prototypes along the way. The most recent one still has the 4:3 aspect ratio, and has been happily showing us views from the ISS for the last few months.
