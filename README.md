@@ -10,7 +10,7 @@ Raspberry Pi based picture frame for displaying livestreams.
 
 | **Part**                                  | **Link**                                                     | Quantity | **Unit Price**            | **Price**   |
 | ----------------------------------------- | ------------------------------------------------------------ | -------- | ------------------------- | ----------- |
-| **Raspberry Pi Zero W**                   | [Adafruit](https://www.adafruit.com/product/3400)            | 1        | $10.00                    | $10.00      |
+| **Raspberry Pi Zero 2 W**                 | [Adafruit](https://www.adafruit.com/product/5291) | 1        | $15.00                   | $15.00     |
 | **Pimoroni HDMI 10" IPS LCD Screen Kit**  | [Adafruit](https://www.adafruit.com/product/4337)            | 1        | $139.95                   | $139.95     |
 | HDMI Ribbon Cable, 30 cm                  | [Adafruit](https://www.adafruit.com/product/3562)            | 1        | $2.75                     | $2.75       |
 | HDMI Plug Adapter                         | [Adafruit](https://www.adafruit.com/product/3548)            | 1        | $6.50                     | $6.50       |
@@ -31,7 +31,7 @@ Raspberry Pi based picture frame for displaying livestreams.
 | M2.5 Socket Head Screw, 4mm | [McMaster-Carr](https://www.mcmaster.com/91292A015/) | 18 | $0.30 ($7.43 for 25) | $5.40 |
 | M2.5 Standoff, 6mm                        | [Digi-Key](https://www.digikey.com/en/products/detail/970060154/732-12827-ND/9488531) | 18      | $0.34 ($16.95 for 50) | $6.12   |
 | Laser-Cut Parts | Ponoko |  |  | $118.99 |
-|                                           |                                                              |          |                           | **$363.14** |
+|                                           |                                                              |          |                           | **$368.14** |
 
 ## Installation
 
