@@ -16,8 +16,6 @@ Raspberry Pi based picture frame for displaying livestreams.
 | HDMI Plug Adapter                         | [Adafruit](https://www.adafruit.com/product/3548)            | 1        | $6.50                     | $6.50       |
 | Mini HDMI Plug Adapter                    | [Adafruit](https://www.adafruit.com/product/3552)            | 1        | $6.50                     | $6.50       |
 | **ATXRaspi R3**                           | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $17.95                    | $17.95      |
-| USB Type-A Female Connector               | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $2.00                     | $2.00       |
-| USB A to Micro B Cable, 6"                | [LowPowerLab](https://lowpowerlab.com/shop/product/91)       | 1        | $4.00                     | $4.00       |
 | D-Ring Picture Hanger, M4                 |                                                              | 2        |                           |             |
 | USB-C Panel Mount                         | [eBay](https://www.ebay.com/itm/143134180140)                | 1        | $6.29                     | $6.29       |
 | USB-C to Micro USB Adapter                | [Amazon](https://www.amazon.com/gp/product/B07GH5KJH2/)      | 1        | $6.99                     | $6.99       |
