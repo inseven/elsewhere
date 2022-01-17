@@ -30,7 +30,8 @@ Raspberry Pi based picture frame for displaying livestreams.
 | M2.5 Standoff, 6mm                        | [Digi-Key](https://www.digikey.com/en/products/detail/970060154/732-12827-ND/9488531) | 18      | $0.34 ($16.95 for 50) | $6.12   |
 | **Laser-Cut Parts** | Ponoko |  |  | $118.99 |
 | **Controller Board** | [Oshpark](https://oshpark.com/shared_projects/Cnb1DUgJ) | 1 | $3.49 ($10.45 for 3) | $3.49 |
-|                                           |                                                              |          |                           | **$365.63** |
+| Micro SD to Micro SD Extension Cable, 25cm | [AliExpress](https://www.aliexpress.com/item/4001154489373.html) | 1 | $3.00 | $3.00 |
+|                                           |                                                              |          |                           | **$368.63** |
 
 ## Installation
 
