@@ -27,11 +27,14 @@ Raspberry Pi based picture frame for displaying livestreams.
 | M3 Socket Head Screw, Low-Profile, 6mm    | [McMaster-Carr](https://www.mcmaster.com/92855A307/)         | 8        | $0.30 (Pack of 25)        | $0.60       |
 | M2.5 Socket Head Screw, 6mm               | [McMaster-Carr](https://www.mcmaster.com/91292A010/)         | 18      | $0.06 ($6.00 for 100) | $1.08    |
 | M2.5 Socket Head Screw, 4mm | [McMaster-Carr](https://www.mcmaster.com/91292A015/) | 18 | $0.30 ($7.43 for 25) | $5.40 |
+| M4 Socket Head Screw, Low-Profile, Partially Threaded, 10mm | [McMaster-Carr](https://www.mcmaster.com/96970A111/) | 2 | $1.48 | $2.96 |
+| M4 Washer, 0.8mm | [McMaster-Carr](https://www.mcmaster.com/93475A230/) | 2 | $0.04 ($3.14 for 100) | $0.08 |
+| M4 Locknut | [McMaster-Carr](https://www.mcmaster.com/93625A150/) | 2 | $0.08 ($7.67 for 100) | $0.16 |
 | M2.5 Standoff, 6mm                        | [Digi-Key](https://www.digikey.com/en/products/detail/970060154/732-12827-ND/9488531) | 18      | $0.34 ($16.95 for 50) | $6.12   |
-| **Laser-Cut Parts** | Ponoko |  |  | $118.99 |
+| **Laser-Cut Parts** | [Ponoko](https://ponoko.com) |  |  | $118.99 |
 | **Controller Board** | [Oshpark](https://oshpark.com/shared_projects/Cnb1DUgJ) | 1 | $3.49 ($10.45 for 3) | $3.49 |
 | Micro SD to Micro SD Extension Cable, 25cm | [AliExpress](https://www.aliexpress.com/item/4001154489373.html) | 1 | $3.00 | $3.00 |
-|                                           |                                                              |          |                           | **$368.63** |
+|                                           |                                                              |          |                           | **$371.83** |
 
 ## Installation
 
