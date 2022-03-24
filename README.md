@@ -41,7 +41,11 @@ Raspberry Pi based picture frame for displaying livestreams.
 | Micro SD to Micro SD Extension Cable, 25cm | [AliExpress](https://www.aliexpress.com/item/4001154489373.html) | 1 | $3.00 | $3.00 |
 |                                           |                                                              |          |                           | **$375.74** |
 
-## Installation
+## Wiring
+
+![Photograph of a recent version of Elsewhere showing the internal wiring](images/wiring.jpg)
+
+## Software Installation
 
 1. Install Raspberry Pi OS Lite (Bullseye).
 
