@@ -2,7 +2,7 @@
 
 [![Build](https://github.com/inseven/elsewhere/actions/workflows/build.yaml/badge.svg)](https://github.com/inseven/elsewhere/actions/workflows/build.yaml)
 
-Raspberry Pi based livestream picture frame.
+Livestream picture frame
 
 ![Render of the current Elsewhere design](images/hero.png)
 
