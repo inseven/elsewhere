@@ -43,7 +43,7 @@ jobs:
         path: build/*
 
     - name: Trigger repository update
-      uses: peter-evans/repository-dispatch@v1
+      uses: peter-evans/repository-dispatch@v2
       if: ${{ github.ref == 'refs/heads/main' }}
       with:
         token: ${{ secrets.TOKEN }}
